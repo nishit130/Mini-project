@@ -95,13 +95,13 @@ export default function Dashboard(props) {
               <CardIcon color="danger">
                 <Icon>info_outline</Icon>
               </CardIcon>
-              <p className={classes.cardCategory}>Fixed Issues</p>
-              <h3 className={classes.cardTitle}>75</h3>
+              <p className={classes.cardCategory}>No of Holdings</p>
+              <h3 className={classes.cardTitle}>5</h3>
             </CardHeader>
             <CardFooter stats>
               <div className={classes.stats}>
                 <LocalOffer />
-                Tracked from Github
+                
               </div>
             </CardFooter>
           </Card>
@@ -112,7 +112,7 @@ export default function Dashboard(props) {
               <CardIcon color="info">
                 <Accessibility />
               </CardIcon>
-              <p className={classes.cardCategory}>Followers</p>
+              <p className={classes.cardCategory}>Profits</p>
               <h3 className={classes.cardTitle}>+245</h3>
             </CardHeader>
             <CardFooter stats>
@@ -137,7 +137,7 @@ export default function Dashboard(props) {
               />
             </CardHeader>
             <CardBody>
-              <h4 className={classes.cardTitle}>Daily Sales</h4>
+              <h4 className={classes.cardTitle}>Daily Profits</h4>
               <p className={classes.cardCategory}>
                 <span className={classes.successText}>
                   <ArrowUpward className={classes.upArrowCardCategory} /> 55%
@@ -165,7 +165,7 @@ export default function Dashboard(props) {
               />
             </CardHeader>
             <CardBody>
-              <h4 className={classes.cardTitle}>Email Subscriptions</h4>
+              <h4 className={classes.cardTitle}>Past Investments</h4>
               <p className={classes.cardCategory}>Last Campaign Performance</p>
             </CardBody>
             <CardFooter chart>

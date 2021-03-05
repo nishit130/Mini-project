@@ -1,0 +1,40 @@
+version: "3.7"
+services:
+  db:
+    image: mysql:8.0.23
+    environment:
+      - MYSQL_HOST=db
+      - MYSQL_PASSWORD=root
+      - MYSQL_DATABASE=portfolioDB
+      - MYSQL_ROOT_PASSWORD=root
+    ports:
+      - "3265:3306"
+    container_name: nishit-mysql-app
+    restart: on-failure 
+  server:
+    build: 
+      context: ./server/
+    image: nishit/node-serve-stockx
+    depends_on:
+      - db
+    command: ["./wait-for-it.sh", "db:3306", "--", "npm", "start"]
+    environment:
+      - MYSQL_HOST=db
+      - MYSQL_USER=root
+      - MYSQL_PORT=3306
+      - MYSQL_PASSWORD=root
+      - MYSQL_DATABASE=portfolioDB
+    ports:
+      - "3001:3001"
+    container_name: nishit-nodejs-app
+  
+  client:
+    build:
+      context: ./client/
+    image: stockx-client-image
+    stdin_open: true
+    ports:
+      - "3003:3000"
+    depends_on:
+      - server
+    container_name: nishit-react-app

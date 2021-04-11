@@ -72,6 +72,7 @@ app.get('/investments/:id',(req, res) => {
 app.post('/add-stocks', (req, res) => {
 
     console.log(req.body);
+    db.query("INSERT INTO stock(stock_name , buy_price , quantity , buy_date ) values (?,?,?,?) ;", [req.body.stockName , req.body.buyPrice ,req.body.quantity , req.body.buyDate])
     res.status(200);
     return res;
 

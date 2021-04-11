@@ -62,7 +62,8 @@ export default function Admin({ ...rest }) {
   };
 
   const [stockHoldings, setStockHoldings] = useState([]);
-    const [totalInvestments, setTotalInvestments] = useState(0);
+  const [totalInvestments, setTotalInvestments] = useState(0);
+
 
   // initialize and destroy the PerfectScrollbar plugin
   React.useEffect(() => {
@@ -96,7 +97,7 @@ export default function Admin({ ...rest }) {
       }
       window.removeEventListener("resize", resizeFunction);
     };
-  });
+  },[totalInvestments]);
 
   const switchRoutes = (
         <Switch>

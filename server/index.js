@@ -4,11 +4,11 @@ const mysql = require('mysql2');
 const cors = require("cors");
 
 const db = mysql.createConnection({
-    host            : process.env.MYSQL_HOST,
-    port            : process.env.MYSQL_PORT,
-    user            : process.env.MYSQL_USER,
-    password        : process.env.MYSQL_PASSWORD,
-    database        : process.env.MYSQL_DATABASE
+    host            : process.env.MYSQL_HOST || "localhost",
+    port            : process.env.MYSQL_PORT || 3306,
+    user            : process.env.MYSQL_USER || "root",
+    password        : process.env.MYSQL_PASSWORD || "Hello#123",
+    // database        : process.env.MYSQL_DATABASE || "portfolioDB"
 });
 console.log("port: ",process.env.DATABASE_HOST)
 
@@ -69,7 +69,13 @@ app.get('/investments/:id',(req, res) => {
     });
 });
 
+app.post('/add-stocks', (req, res) => {
 
+    console.log(req.body);
+    res.status(200);
+    return res;
+
+})
 
 
 app.get('/admin',(req, res) => {

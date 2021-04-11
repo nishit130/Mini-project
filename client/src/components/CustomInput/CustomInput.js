@@ -22,6 +22,7 @@ export default function CustomInput(props) {
     id,
     labelProps,
     inputProps,
+    inputOnChange,
     error,
     success
   } = props;
@@ -58,6 +59,7 @@ export default function CustomInput(props) {
           disabled: classes.disabled,
           underline: underlineClasses
         }}
+        onChange = {inputOnChange}
         id={id}
         {...inputProps}
       />
@@ -75,6 +77,7 @@ CustomInput.propTypes = {
   labelProps: PropTypes.object,
   id: PropTypes.string,
   inputProps: PropTypes.object,
+  inputOnChange: PropTypes.func,
   formControlProps: PropTypes.object,
   error: PropTypes.bool,
   success: PropTypes.bool

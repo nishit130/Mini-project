@@ -9,12 +9,12 @@ services:
       - MYSQL_ROOT_PASSWORD=root
     ports:
       - "3265:3306"
-    container_name: nishit-mysql-app
+    container_name: stockx-database
     restart: on-failure 
   server:
     build: 
       context: ./server/
-    image: nishit/node-serve-stockx
+    image: nishit130/stockx-server
     depends_on:
       - db
     command: ["./wait-for-it.sh", "db:3306", "--", "npm", "start"]
@@ -26,15 +26,15 @@ services:
       - MYSQL_DATABASE=portfolioDB
     ports:
       - "3001:3001"
-    container_name: nishit-nodejs-app
+    container_name: stockx-server
   
   client:
     build:
       context: ./client/
-    image: stockx-client-image
+    image: nishit130/stockx-client
     stdin_open: true
     ports:
       - "3003:3000"
     depends_on:
       - server
-    container_name: nishit-react-app
+    container_name: stockx-client

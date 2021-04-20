@@ -26,8 +26,5 @@ More details on functionality, views, backend logic and design process are avail
 ### Home page of the site:
 ![](images/home_view.PNG)
 
-### Sensex view:
-![](images/sensex_view.PNG)
-
 ### Individual stock view:
 ![](images/individual_stock_view.PNG)

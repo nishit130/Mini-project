@@ -1,0 +1,32 @@
+version: "3.7"
+services:
+  db:
+    image: postgres:13
+    environment:
+      - POSTGRES_PASSWORD=pass
+      - POSTGRES_DB=stocks
+      - POSTGRES_USER=postgres
+    ports:
+      - "3001:5432"
+    container_name: stock-database
+    restart: on-failure
+    volumes:
+      - ./data_sheets:/docker-entrypoint-initdb.d/
+      - ./create-tables.sql:/docker-entrypoint-initdb.d/create-tables.sql
+      - ../postgres-data:/var/lib/postgresql/data/
+
+
+  server:
+    image: stockport-server
+    depends_on:
+      - db
+    command: ["./wait-for-it.sh", "db:3001", "--", "npm", "start"]
+    environment:
+      - POSTGRES_HOST=db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PORT=3001
+      - POSTGRES_PASSWORD=pass
+      - POSTGRES_DB=stocks
+    ports:
+      - "3000:3000"
+    container_name: stock-server
